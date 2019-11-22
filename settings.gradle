@@ -1,0 +1,2 @@
+include ':app', ':sectionadapter'
+rootProject.name='Section Adapter Sample'
