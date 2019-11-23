@@ -33,7 +33,7 @@ abstract class SectionAdapter<S : Section, N : Node> :
         val nodeIndex = differ.currentList.indexOf(node)
         val nodeSection = (sectionsMapping.keys.filter {
             it < nodeIndex
-        }.minBy { nodeIndex - it } ?: 0) + 1
+        }.minBy { nodeIndex - it}?.plus(1) ?: 0)
         val nextSection = (sectionsMapping.keys.sorted().firstOrNull {
             it > nodeIndex
         } ?: dataset.size) - 1
