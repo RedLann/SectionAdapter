@@ -14,7 +14,7 @@ abstract class SectionAdapter<S : Section, N : Node> :
     RecyclerView.Adapter<SectionAdapter<S, N>.BaseViewHolder>(), ItemTouchHelperAdapter {
     private val differ: AsyncListDiffer<Node> by lazy { AsyncListDiffer(this, ItemDiffCallback()) }
     private var sectionsMapping = mutableMapOf<Int, Section>()
-    protected val dataset: List<Node> get() = differ.currentList
+    val dataset: List<Node> get() = differ.currentList
 
     companion object {
         const val NODE = 0
@@ -124,7 +124,6 @@ abstract class SectionAdapter<S : Section, N : Node> :
 
         protected fun toggleCollapse(section: S) {
             if (!isCollapsible()) return
-            collapsed = !collapsed
             if (collapsed) collapseSection(section)
             else expandSection(section)
         }
@@ -133,6 +132,7 @@ abstract class SectionAdapter<S : Section, N : Node> :
             val currentList = differ.currentList.toMutableList()
             currentList.removeAll(section.nodes)
             differ.submitList(currentList)
+            collapsed = true
         }
 
         protected open fun expandSection(section: S) {
@@ -143,6 +143,7 @@ abstract class SectionAdapter<S : Section, N : Node> :
                 index++
             }
             differ.submitList(currentList)
+            collapsed = false
         }
     }
 

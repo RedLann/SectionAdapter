@@ -13,6 +13,7 @@ interface Node {
 }
 
 interface Section : Node {
+    val collapsedByDefault: Boolean
     var canBeCollapsed: Boolean
     var nodes: List<Node>
 }
