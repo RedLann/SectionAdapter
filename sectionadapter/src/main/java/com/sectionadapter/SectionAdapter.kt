@@ -124,7 +124,7 @@ abstract class SectionAdapter<S : Section, N : Node> :
 
         protected fun toggleCollapse(section: S) {
             if (!isCollapsible()) return
-            if (collapsed) collapseSection(section)
+            if (!collapsed) collapseSection(section)
             else expandSection(section)
         }
 
