@@ -174,6 +174,7 @@ abstract class SectionAdapter<S : Section, N : Node> :
         }
 
         override fun areContentsTheSame(oldItem: Node, newItem: Node): Boolean {
+            if (oldItem is Section && newItem is Section) return false
             return oldItem.areContentsTheSame(newItem)
         }
     }
